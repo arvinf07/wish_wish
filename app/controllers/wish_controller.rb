@@ -1,0 +1,6 @@
+
+
+class WishController < ApplicationController
+
+end
+  
