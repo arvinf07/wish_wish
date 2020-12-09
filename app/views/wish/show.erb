@@ -1,4 +1,8 @@
-<h1> <%=@wish.name%> </h1>
+<h1> <%=current_wish.name%> </h1>
 
 <h2>Comments</h2>
-<button type="button"><a href=<%="/wishes/#{@wish.id}"%>/edit>Edit</a> </button>
+<button type="button"><a href=<%="/wishes/#{current_wish.id}"%>/edit>Edit</a> </button>
+<form action="/wishes/<%=current_wish.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>

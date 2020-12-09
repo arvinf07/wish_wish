@@ -14,6 +14,11 @@ class UserController < ApplicationController
     erb :'user/signup'
   end  
 
+  get '/users/logout' do 
+    session.clear
+    redirect '/users/login'
+  end  
+
   get '/users/login' do 
     if logged_in?
       redirect "/users/#{current_user.id}"

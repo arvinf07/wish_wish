@@ -20,15 +20,23 @@ class WishController < ApplicationController
   end
 
   get '/wishes/:id/edit' do
-    @wish = Wish.find(params[:id])
+    current_wish
     erb :'wish/edit'
   end
 
   get '/wishes/:id' do 
-    @wish = Wish.find(params[:id])
+    current_wish
     erb :'wish/show'
   end  
-  
+
+  patch '/wishes/:id' do 
+    
+    redirect "wishes/#{params[:id]}"
+  end
+ 
+  delete '/wishes/:id' do 
+    Wish.find(params[:id]).destroy
+  end  
   
 end
   
