@@ -10,9 +10,13 @@ class WishController < ApplicationController
   end  
 
   post '/wishes' do 
+    wish = Wish.new(name: params[:name].strip)
     binding.pry
-    Wish.create(params[:name])
-    
+    if !wish.save
+      #display errors with either rack-flash or active record error messages
+      redirect '/wishes/new'
+    end  
+
   end
   
   

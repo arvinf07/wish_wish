@@ -8,10 +8,16 @@ class UserController < ApplicationController
   end  
 
   get '/users/signup' do 
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    end  
     erb :'user/signup'
   end  
 
   get '/users/login' do 
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    end  
     erb :'user/login'
   end  
 
