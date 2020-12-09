@@ -16,8 +16,18 @@ class WishController < ApplicationController
       #display errors with either rack-flash or active record error messages
       redirect '/wishes/new'
     end  
-
+    redirect '/wishes/:id'
   end
+
+  get '/wishes/:id/edit' do
+    @wish = Wish.find(params[:id])
+    erb :'wish/edit'
+  end
+
+  get '/wishes/:id' do 
+    @wish = Wish.find(params[:id])
+    erb :'wish/show'
+  end  
   
   
 end
