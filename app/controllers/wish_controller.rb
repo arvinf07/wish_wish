@@ -33,7 +33,7 @@ class WishController < ApplicationController
  
   delete '/wishes/:id' do 
     Wish.find(params[:id]).destroy
-    redirect "/users/#{current_user.id}"
+    redirect "/users/#{current_user.id}"  
   end  
   
 end
