@@ -1,5 +1,5 @@
 
 
-class CommentController
+class CommentController < ApplicationController
   
 end  

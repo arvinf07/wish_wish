@@ -1,10 +1,20 @@
 require 'pry'
 
 class UserController < ApplicationController
-  
+  ##Make rou
+
   get '/users' do 
     @user = User.all 
     erb :'user/index'
+  end  
+
+  get '/users/all' do
+    if !logged_in? 
+      redirect '/'  
+    else
+      @users = User.all
+      erb :'/user/index'
+    end  
   end  
 
   get '/users/signup' do 

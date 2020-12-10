@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      redirect '/users/show'
+      redirect "/users/#{current_user.id}"
     end  
     erb :welcome
   end
@@ -29,7 +29,6 @@ class ApplicationController < Sinatra::Base
     def current_wish
       @current_wish ||= Wish.find(params[:id])
     end  
-
   end  
 
 end
