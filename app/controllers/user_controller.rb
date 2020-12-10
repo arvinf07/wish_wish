@@ -37,12 +37,18 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     end  
-    erb :'user/failure'
+    erb :failure
   end  
 
   post '/users/signup' do
+    binding.pry
     params[:username] = params[:username].strip
-    User.create(params)
+    if User.find_by_username(params[:username])
+      #Show error messages
+      erb :failure
+    end  
+    user = User.create(params)
+    session[:user_id] = user.id
     redirect '/users/login'
   end  
   

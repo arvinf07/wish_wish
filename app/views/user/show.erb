@@ -1,4 +1,5 @@
-<h1>Welcome <%=current_user.username%> </h1>
+<h1>Hello <%=current_user.username%> </h1>
+<h2>Here is your Wish List</h2>
 <ul>
 <%current_user.wishes.each do |wish|%>
   <li><h3><a href="/wishes/<%=wish.id%>"> <%=wish.name%> </a></h3></li>
