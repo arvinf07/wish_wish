@@ -1,7 +1,8 @@
 require 'pry'
 
 class UserController < ApplicationController
-  ##Make rou
+  ##Make route to edit a user's username
+  ##Create seperate route to view other users lists###
 
   get '/users' do 
     @user = User.all 
@@ -38,11 +39,12 @@ class UserController < ApplicationController
 
   get '/users/:id' do 
     if logged_in?
+      # binding.pry
+      @other_user = User.find(params[:id]) if current_user.id != params[:id]
       erb :'/user/show'
     else
       redirect '/users/login'  
     end
-
   end  
 
   post '/users/login' do 

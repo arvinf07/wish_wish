@@ -1,8 +1,22 @@
-<h1>Hello <%=current_user.username%> </h1>
-<h2>Here is your Wish List</h2>
-<a href="/wishes/new">Add a Wish to your List</a>
-<ul>
-<%current_user.wishes.each do |wish|%>
-  <li><h3><a href="/wishes/<%=wish.id%>"> <%=wish.name%> </a></h3></li>
+<%if @other_user%>
+  <h1><%=@other_user.username%> Wish List </h1>
+  <ul>
+  <%@other_user.wishes.each do |wish|%>
+    <li><h3><a href="/wishes/<%=wish.id%>"> <%=wish.name%> </a></h3></li>
+  <%end%>
+  </ul>
+<%else%>
+  <h1>Hello <%=current_user.username%> </h1>
+  <h2>Here is your Wish List</h2>
+  <a href="/wishes/new">Add a Wish to your List</a>
+  <ul>
+  <%current_user.wishes.each do |wish|%>
+    <li><h3><a href="/wishes/<%=wish.id%>"> <%=wish.name%> </a></h3></li>
+  <%end%>
+  </ul>
 <%end%>
-</ul>
+
+
+
+
+
