@@ -1,7 +1,6 @@
 
 
 class WishController < ApplicationController
-
   get '/wishes/new' do 
     if !logged_in?
       redirect "/failure"
@@ -16,12 +15,10 @@ class WishController < ApplicationController
       redirect '/wishes/new'
     end  
     current_user.wishes << wish
-    binding.pry
     redirect "/wishes/#{wish.id}"
   end
 
   get '/wishes/:id/edit' do
-    current_wish
     erb :'wish/edit'
   end
 
@@ -30,8 +27,7 @@ class WishController < ApplicationController
   end  
 
   patch '/wishes/:id' do 
-    
-    redirect "wishes/#{params[:id]}"
+    redirect "/wishes/#{params[:id]}"
   end
  
   delete '/wishes/:id' do 
