@@ -27,7 +27,12 @@ class UserController < ApplicationController
   end  
 
   get '/users/:id' do 
-    erb :'/user/show'
+    if logged_in?
+      erb :'/user/show'
+    else
+      redirect '/users/login'  
+    end
+
   end  
 
   post '/users/login' do 
