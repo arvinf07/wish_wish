@@ -1,8 +1,9 @@
 require 'pry'
 
 class UserController < ApplicationController
+  ##Why is current user page not allowing to add new wish
+  ##When editing only the first word appears
   ##Make route to edit a user's username
-  ##Create seperate route to view other users lists###
 
   get '/users' do 
     @user = User.all 

@@ -1,5 +1,5 @@
 <%if @other_user%>
-  <h1><%=@other_user.username%> Wish List </h1>
+  <h1><%=@other_user.username%>'s Wish List </h1>
   <ul>
   <%@other_user.wishes.each do |wish|%>
     <li><h3><a href="/wishes/<%=wish.id%>"> <%=wish.name%> </a></h3></li>

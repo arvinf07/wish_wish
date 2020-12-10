@@ -1,8 +1,12 @@
 <h1> <%=current_wish.name%> </h1>
 
 <h2>Comments</h2>
-<button type="button"><a href=<%="/wishes/#{current_wish.id}"%>/edit>Edit</a> </button>
-<form action="/wishes/<%=current_wish.id%>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
+<%if current_user.wishes.include?(current_wish)%>
+  <form action=<%="/wishes/#{current_wish.id}"%>/edit method="get">
+    <input type="submit" value="Edit">
+  </form>
+  <form action="/wishes/<%=current_wish.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<%end%>  
