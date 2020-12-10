@@ -8,7 +8,7 @@ class WishController < ApplicationController
     erb :'wish/new'  
   end  
 
-  post '/wishes' do 
+  post '/wishes' do           ##Create and Associate Comment with Wish and User
     wish = Wish.create(name: params[:name].strip)
     if !wish
       #display errors with either rack-flash or active record error messages

@@ -2,7 +2,8 @@
 
 class Wish < ActiveRecord::Base
   belongs_to :user
+  has_many :comments
   validates :name, presence: true
-  #has_many :comments (user also has_many)  comments(join table) and comment model that belong to both user and wish
-  # validates :name, uniqueness: true (add scope)
+  #validates :name, uniqueness: { scope: :user_id???,
+    #message: "should happen once per year" }
 end
