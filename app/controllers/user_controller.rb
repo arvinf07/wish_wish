@@ -41,15 +41,14 @@ class UserController < ApplicationController
   end  
 
   post '/users/signup' do
-    binding.pry
     params[:username] = params[:username].strip
-    if User.find_by_username(params[:username])
-      #Show error messages
-      erb :failure
+    if !User.find_by_username(params[:username])
+      user = User.create(params)
+      session[:user_id] = user.id
+      redirect '/users/login'
     end  
-    user = User.create(params)
-    session[:user_id] = user.id
-    redirect '/users/login'
+    #Show error messages in login page
+    erb :failure
   end  
   
   
