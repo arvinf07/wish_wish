@@ -1,7 +1,6 @@
 require 'pry'
 
 class UserController < ApplicationController
-  ##Why is current user page not allowing to add new wish
   ##Make route to edit a user's username
 
   get '/users' do 
