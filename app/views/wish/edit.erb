@@ -5,7 +5,10 @@
   <label for="name">What item do you wish to add?</label><br>        
   <input name="name" type="text" value='<%=current_wish.name%>' ><br><br>
   <label for="comments">Any comments for your wish?(optional)</label><br>
-  <input type='text' name='comment[]' placeholder="preferably blue"><br><br>
-
+  <%if !current_wish.comments.any?%>
+    <input type='text' name='comment' placeholder="preferably blue"><br><br>
+  <%else%>
+    <input type='text' name='comment' value='<%=current_wish.comments.first.content%>'> <br><br>  
+  <%end%>  
   <input type="submit" value="Edit">
 </form>

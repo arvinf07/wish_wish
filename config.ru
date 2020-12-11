@@ -6,7 +6,6 @@ require './config/environment'
 
 
 use Rack::MethodOverride
-use CommentController
 use UserController
 use WishController
 run ApplicationController
