@@ -2,7 +2,6 @@ require 'pry'
 
 class UserController < ApplicationController
   ##Why is current user page not allowing to add new wish
-  ##When editing only the first word appears
   ##Make route to edit a user's username
 
   get '/users' do 
@@ -40,8 +39,7 @@ class UserController < ApplicationController
 
   get '/users/:id' do 
     if logged_in?
-      # binding.pry
-      @other_user = User.find(params[:id]) if current_user.id != params[:id]
+      @other_user = User.find(params[:id]) if current_user.id != params[:id].to_i
       erb :'/user/show'
     else
       redirect '/users/login'  

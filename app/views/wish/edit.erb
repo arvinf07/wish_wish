@@ -3,7 +3,7 @@
 <form action="/wishes/<%=current_wish.id%>" method='post'>
   <input type='hidden' name='_method' value="patch">
   <label for="name">What item do you wish to add?</label><br>        
-  <input name="name" type="text" value=<%=current_wish.name%> ><br><br>
+  <input name="name" type="text" value='<%=current_wish.name%>' ><br><br>
   <label for="comments">Any comments for your wish?(optional)</label><br>
   <input type='text' name='comments' placeholder="preferably blue"><br><br>
 
