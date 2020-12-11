@@ -8,17 +8,17 @@ class WishController < ApplicationController
     erb :'wish/new'  
   end  
 
-  post '/wishes' do           ##Create and Associate Comment with Wish and User
-    wish = Wish.create(name: params[:name].strip)
-    if !wish
+  post '/wishes' do          
+    wish = Wish.create(name: params[:name].strip, user)
+    if !wish.valid?
       #display errors with either rack-flash or active record error messages
       redirect '/wishes/new'
     end  
     ##Is there a better way to do this?
-    wish.comments << Comment.create(content: params[:comments]) if params[:comments]
-    current_user.wishes << wish
-    current_user.comment_ids << wish.comment_ids.last
-    binding.pry  ##Show wishes comments in show page
+    if params[:comment] != ""
+      comment = Comment.create(content: params[:comment], user_id: current_user.id, wish_id: wish.id) 
+    end  
+    current_user.wishes << wish  #why is it not saving to the user comments
     redirect "/wishes/#{wish.id}"
   end
 
@@ -31,6 +31,12 @@ class WishController < ApplicationController
   end  
 
   patch '/wishes/:id' do 
+    if params[:comment]
+      comment = Comment.create(content: params[:comment]) 
+      current_wish.comments <<  comment
+      current_user.comments << comment
+      binding.pry
+    end  
     current_wish.update(name: params[:name])
     redirect "/wishes/#{params[:id]}"
   end

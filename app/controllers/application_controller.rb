@@ -32,3 +32,6 @@ class ApplicationController < Sinatra::Base
   end  
 
 end
+
+##Should I just make comments an attribute(array) of wishes?
+##How can I make a button that adds another comment form ?
