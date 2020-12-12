@@ -1,11 +1,7 @@
 <h1> <%=current_wish.name%> </h1>
 
-<h2>Comments</h2>
-<ul>
-  <%current_wish.comments.each do |comment|%>
-    <li><%=comment.content%></li>
-  <%end%>
-</ul>
+<h4>Wish details: <%=current_wish.details%></h4><br><br>
+
 <%if current_user.wishes.include?(current_wish)%>
   <form action=<%="/wishes/#{current_wish.id}"%>/edit method="get">
     <input type="submit" value="Edit">

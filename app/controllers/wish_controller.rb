@@ -14,9 +14,7 @@ class WishController < ApplicationController
       #display errors with either rack-flash or active record error messages
       redirect '/wishes/new'
     end  
-    if params[:comment] != ""
-      comment = Comment.create(content: params[:comment], user_id: current_user.id, wish_id: wish.id) 
-    end  
+    wish.details = params[:details] if params[:details] != ""
     current_user.wishes << wish 
     redirect "/wishes/#{wish.id}"
   end
@@ -25,7 +23,7 @@ class WishController < ApplicationController
     if current_user.wishes.include?(current_wish)
       erb :'wish/edit'
     else
-      erb :failure
+      erb :not_logged_in
     end
     
   end
@@ -35,11 +33,9 @@ class WishController < ApplicationController
   end  
 
   patch '/wishes/:id' do 
-    if params[:comment] != ""
-      comment = current_wish.comments.first
-      comment.update(content: params[:comment])
-    end  
-    current_wish.update(name: params[:name])
+    # if params[:details] != ""
+    # end  
+    current_wish.update(name: params[:name], details: params[:details]) 
     redirect "/wishes/#{params[:id]}"
   end
  
