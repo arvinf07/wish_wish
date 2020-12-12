@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    set :show_exceptions, false
   end
 
   get "/" do
@@ -16,6 +17,15 @@ class ApplicationController < Sinatra::Base
     end  
     erb :welcome
   end
+
+  not_found do 
+    status 404
+    erb :error
+  end  
+
+  error ActiveRecord::RecordNotFound do 
+    redirect '/'
+  end  
 
   helpers do 
     def logged_in?

@@ -2,11 +2,10 @@
 
 class WishController < ApplicationController
   get '/wishes/new' do 
-    if !logged_in?
-      erb :failure
-    end
-    erb :'wish/new'  
-  end  
+    erb :'wish/new' if logged_in?
+    erb :failure
+  end
+  
 
   post '/wishes' do          
     wish = Wish.create(name: params[:name].strip)
@@ -33,8 +32,6 @@ class WishController < ApplicationController
   end  
 
   patch '/wishes/:id' do 
-    # if params[:details] != ""
-    # end  
     current_wish.update(name: params[:name], details: params[:details]) 
     redirect "/wishes/#{params[:id]}"
   end
