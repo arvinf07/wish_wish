@@ -20,7 +20,7 @@ class WishController < ApplicationController
   end
 
   get '/wishes/:id/edit' do
-    if current_user.wishes.include?(current_wish)
+    if current_user && current_user.wishes.include?(current_wish)
       erb :'wish/edit'
     else
       erb :not_logged_in

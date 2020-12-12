@@ -1,7 +1,7 @@
 require 'pry'
 
 class UserController < ApplicationController
-  ##Make route to edit a user's username
+  ##Make route to edit a users' username
 
   get '/users' do 
     @user = User.all 
