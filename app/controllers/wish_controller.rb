@@ -2,8 +2,11 @@
 
 class WishController < ApplicationController
   get '/wishes/new' do 
-    erb :'wish/new' if logged_in?
-    erb :failure
+    if logged_in?
+      erb :'wish/new' 
+    else  
+      erb :failure
+    end  
   end
   
 
