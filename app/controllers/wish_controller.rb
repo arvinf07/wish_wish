@@ -24,8 +24,10 @@ class WishController < ApplicationController
   get '/wishes/:id/edit' do
     if current_user && current_user.wishes.include?(current_wish)
       erb :'wish/edit'
-    else
+    elsif !logged_in?
       erb :not_logged_in
+    else
+      redirect "/users/#{current_user.id}"
     end
     
   end
