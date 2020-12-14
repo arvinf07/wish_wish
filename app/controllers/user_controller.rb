@@ -3,12 +3,7 @@ require 'pry'
 class UserController < ApplicationController
   ##Make route to edit a users' username
 
-  get '/users' do 
-    @user = User.all 
-    erb :'user/index'
-  end  
-
-  get '/users/all' do
+  get '/users' do
     if !logged_in? 
       redirect '/'  
     else
@@ -55,10 +50,21 @@ class UserController < ApplicationController
     erb :failure
   end  
 
-  post '/users/signup' do
+  # post '/users/signup' do  ##Use valid? here
+  #   params[:username] = params[:username].strip
+  #   if !User.find_by_username(params[:username])
+  #     user = User.create(params)
+  #     session[:user_id] = user.id
+  #     redirect '/users/login'
+  #   end  
+  #   #Show error messages in login page
+  #   erb :failure
+  # end  
+  
+  post '/users/signup' do  ##Use valid? here
     params[:username] = params[:username].strip
-    if !User.find_by_username(params[:username])
-      user = User.create(params)
+    user = User.create(params)
+    if user.valid?
       session[:user_id] = user.id
       redirect '/users/login'
     end  

@@ -37,13 +37,21 @@ class WishController < ApplicationController
   end  
 
   patch '/wishes/:id' do 
-    current_wish.update(name: params[:name], details: params[:details]) 
-    redirect "/wishes/#{params[:id]}"
+    if current_user.wishes.include?(current_wish)
+      current_wish.update(name: params[:name], details: params[:details]) 
+      redirect "/wishes/#{params[:id]}"
+    else
+      redirect '/'  
+    end  
   end
  
   delete '/wishes/:id' do 
-    Wish.find(params[:id]).destroy
-    redirect "/users/#{current_user.id}"  
+    if current_user.wishes.include?(current_wish)
+      Wish.find(params[:id]).destroy
+      redirect "/users/#{current_user.id}"  
+    else
+      redirect '/'  
+    end  
   end  
   
 end
